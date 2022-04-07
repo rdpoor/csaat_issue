@@ -28,11 +28,15 @@ SPI0_WriteRead((void *) payload, sizeof(payload), NULL, 0);
 SYSTICK_DelayMs(1);
 ```
 
-And in ![the register state graphic](./spi0_csr1.jpg) you can see that the CSAAT
-bit is set in the register, yet NPCS1 does de-assert (goes high) between writing
-the preamble and writing the payload.
+In the register state window, you can see that the CSAAT bit 
+is set in SPI->CSR1:
 
-See ![the attached scope trace](./rigol.png) for the resulting output.
+![the register state graphic](./spi0_csr1.jpg)
+
+... but on the oscilliscope trace, yet NPCS1 de-asserts (goes high) 
+between writing the preamble and writing the payload:
+
+![the attached scope trace](./rigol.png)
 
 The top trace (yellow) is chip select. It should be staying low between
 the two transfers.
